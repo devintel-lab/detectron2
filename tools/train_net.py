@@ -38,6 +38,11 @@ from detectron2.evaluation import (
 )
 from detectron2.modeling import GeneralizedRCNNWithTTA
 
+import sys
+
+sys.path.append("../datasets")
+import home15
+
 
 def build_evaluator(cfg, dataset_name, output_folder=None):
     """

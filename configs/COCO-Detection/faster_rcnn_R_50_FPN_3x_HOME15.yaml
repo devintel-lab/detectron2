@@ -1,0 +1,15 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 12
+SOLVER:
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+DATASETS:
+  TRAIN: ("home15_train",)
+  TEST: ("home15_test",)
+OUTPUT_DIR: "output/faster_rcnn_R_50_FPN_3x_HOME15.yaml"

@@ -3,6 +3,9 @@ output
 instant_test_output
 inference_test_output
 
+tools/output
+datasets/home15
+env
 
 *.png
 *.json
