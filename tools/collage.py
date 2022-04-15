@@ -6,11 +6,10 @@ import os
 
 from PIL import Image
 
-import filters
 import random
 
 
-def collage(box_dir, subsample=1., max_width_pixels=3000):
+def collage(box_dir, subsample=1., max_width_pixels=1000):
     files = [x for x in os.listdir(box_dir) if x.endswith(".jpg")]
     random.shuffle(files)
     files = files[:int(len(files)*subsample)]
@@ -24,19 +23,21 @@ def collage(box_dir, subsample=1., max_width_pixels=3000):
         if i.size[0] > max_width[0]:
             max_width = (i.size[0], i)
 
-
-    img_matrix = [[]]
-
-    total_x_consumed = 0
-    curr_row = 0
-    for i in sorted_imgs:
-        print()
-
     max_height = sorted_imgs[0].size[1]
 
     output = Image.new("RGB", (max_width_pixels, max_height*5))
 
-    print()
+    y_cursor = 0
+    x_cursor = 0
+
+    for i in sorted_imgs:
+        output.paste(i, (x_cursor, y_cursor))
+        x_cursor += i.size[0]
+        if x_cursor > 0.90*max_width_pixels:
+            x_cursor = 0
+            y_cursor += i.size[1]
+
+    output.save(osp.join(args.out_dir, f"{osp.basename(box_dir)}.jpg"))
 
 
 
