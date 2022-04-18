@@ -1,0 +1,14 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "/data/code/obj_loc/detectron2/tools/output/faster_rcnn_R_50_FPN_3x_HOME15.yaml/model_0074999.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 12
+SOLVER:
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+DATASETS:
+  TEST: ("home15_randomsample_inference",)
+OUTPUT_DIR: "output/faster_rcnn_R_50_FPN_3x_HOME15_RANDOMSAMPLE_INFERENCE.yaml"

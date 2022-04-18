@@ -37,7 +37,7 @@ if __name__ == "__main__":
     home_metadata = MetadataCatalog.get("home15_train")
     predictor = DefaultPredictor(cfg)
 
-    dataset = home15.home_15_test_dataset()
+    dataset = home15.home_15_randomsample_inference_dataset()
     for d in random.sample(dataset, 3):    
         im = cv2.imread(d["file_name"])
         outputs = predictor(im)

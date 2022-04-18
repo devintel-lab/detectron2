@@ -9,7 +9,7 @@ from PIL import Image
 import random
 
 
-def collage(box_dir, subsample=1., max_width_pixels=1000):
+def collage(box_dir, subsample=1., max_width_pixels=1500):
     files = [x for x in os.listdir(box_dir) if x.endswith(".jpg")]
     random.shuffle(files)
     files = files[:int(len(files)*subsample)]
@@ -25,7 +25,7 @@ def collage(box_dir, subsample=1., max_width_pixels=1000):
 
     max_height = sorted_imgs[0].size[1]
 
-    output = Image.new("RGB", (max_width_pixels, max_height*5))
+    output = Image.new("RGB", (max_width_pixels, max_height*15))
 
     y_cursor = 0
     x_cursor = 0
